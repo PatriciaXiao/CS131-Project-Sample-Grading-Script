@@ -21,7 +21,7 @@
 - under [resources](./resources) folder I put my hint code for you to get started with this project there.
 
 ## Usage
-* put your ```server.py``` and all other needed ```.py``` files under the **sample_submission** folder
+* put your ```server.py``` and all other needed ```.py``` files under the [**sample_submission**](./sample_submission) folder
 * modify the port number in ```evaluation.py``` (or keep them the same if you run on local machine --- the easiest way to test your code is to change your port number to around 800X and then test them on your local machine)
 * could run single evaluation by
     ```shell
@@ -30,3 +30,10 @@
 * I think it should work for mac and linux, probably won't work on Windows
 * Probably a little bit adaptation is needed, probably the version matters
 * Once it works, feel free to add your own test cases in ```client_basic.SuperClient.test```; it's easy isn't it?
+
+## About organizing log files
+You might want to have a look at [os.mkdir](https://www.tutorialspoint.com/python/os_mkdir.htm) and [os.path.exists](https://www.geeksforgeeks.org/python-os-path-exists-method/)
+
+## What kind of submission is safe?
+If you unzip your files into the [sample_submission](./sample_submission) folder, with no extra effort required (e.g. don't need to create an empty folder empty, etc.), we can always make ```client_basic``` run (I mean if you occupy others' port then it is not guaranteed to work).
+

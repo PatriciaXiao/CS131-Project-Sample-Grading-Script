@@ -44,16 +44,37 @@ class SuperClient:
         command = 'nohup python3.7 {} {} &\n'.format(self.server, server_name)
         os.system(command)
         # wait for a while so that the server has its time of setting up
-        await asyncio.sleep(1)
+        await asyncio.sleep(0.5)
 
-    def end_server(self, server_name):
+    async def end_server(self, server_name):
         port = self.port_dict[server_name]
         os.system('lsof -ti:{} | xargs kill'.format(port))
+        await asyncio.sleep(0.3)
 
     def end_all_servers(self):
         for server_name in self.port_dict.keys():
             port = self.port_dict[server_name]
             os.system('lsof -ti:{} | xargs kill'.format(port))
+
+    async def crazy(self, port, message):
+        reader, writer = await asyncio.open_connection(self.host, port, loop=self.loop)
+        # write
+        writer.write(str(message).encode())
+        await writer.drain()
+        writer.write_eof()
+        # read
+        if self.timeout is None:
+            data =  await reader.read(self.message_max_length)
+        else:
+            read_func = reader.read(self.message_max_length)
+            try:
+                data = await asyncio.wait_for(read_func, timeout=self.timeout)
+            except asyncio.TimeoutError:
+                writer.close()
+                print("TIME OUT")
+                return TIMEOUT_MSG
+        writer.close()
+        return data.decode().strip()
 
     async def iamat(self, port, clientName, longitude, latitude):
         message = IAMAT(clientName, longitude, latitude, time.time())
@@ -74,7 +95,7 @@ class SuperClient:
                 print("TIME OUT")
                 return TIMEOUT_MSG
         writer.close()
-        return data.decode()
+        return data.decode().strip()
 
     async def whatsat(self, port, clientName, radius, maxItems):
         message = WHATSAT(clientName, radius, maxItems)
@@ -101,16 +122,36 @@ class SuperClient:
         # start the loop
         data = self.loop.run_until_complete(self.iamat(port, clientName, longitude, latitude))
         return data
+    def safe_run_iamat(self, *args):
+        return self.run_iamat(*args)
+
+        try:
+            return self.run_iamat(*args)
+        except:
+            return "CRUSH"
 
     def run_whatsat(self, port, clientName, radius, maxItems):
         # start the loop
         data = self.loop.run_until_complete(self.whatsat(port, clientName, radius, maxItems))
         first_line = data.split('\n')[0]
-        json_part = json.loads(data[len(first_line):])
+        json_part = json.loads(data[len(first_line):]) if first_line.strip()[0] != "?" else dict()
+        first_line = first_line.strip()
         return first_line, json_part
+
+    def safe_run_whatsat(self, *args):
+        try:
+            return self.run_whatsat(*args)
+        except:
+            return "CRUSH", dict()
+
+    def run_crazy(self, port, crazy_info):
+        data = self.loop.run_until_complete(self.crazy(port, crazy_info))
+        return True if (len(data) and data[0] == '?') else False
 
     def run_startserver(self, server_name):
         self.loop.run_until_complete(self.start_server(server_name))
+    def run_endserver(self, server_name):
+        self.loop.run_until_complete(self.end_server(server_name))
 
     def start_all_servers(self):
         for server_name in self.port_dict.keys():
