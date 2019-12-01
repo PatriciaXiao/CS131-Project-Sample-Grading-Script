@@ -21,8 +21,8 @@
 - under [resources](./resources) folder I put my hint code for you to get started with this project there.
 
 ## Usage
-* put your server.py under the **sample_submission** folder
-* modify the port number from evaluation.py (or keep them the same if you run on local machine --- the easiest way to test your code is to change your port number to around 800X and then test them on your local machine)
+* put your ```server.py``` under the **sample_submission** folder
+* modify the port number in ```evaluation.py``` (or keep them the same if you run on local machine --- the easiest way to test your code is to change your port number to around 800X and then test them on your local machine)
 * could run single evaluation by
     ```shell
     python client_basic.py
