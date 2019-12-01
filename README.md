@@ -35,5 +35,5 @@
 You might want to have a look at [os.mkdir](https://www.tutorialspoint.com/python/os_mkdir.htm) and [os.path.exists](https://www.geeksforgeeks.org/python-os-path-exists-method/)
 
 ## What kind of submission is safe?
-If you unzip your files into the [sample_submission](./sample_submission) folder, with no extra effort required (e.g. don't need to create an empty folder empty, etc.), we can always make ```client_basic``` run (I mean if you occupy others' port then it is not guaranteed to work).
+If you unzip your files into the [sample_submission](./sample_submission) folder, with no extra effort required (e.g. don't need to create an empty folder manually, etc.), we can always make ```client_basic``` run (I mean if you occupy others' port then it is not guaranteed to work).
 
