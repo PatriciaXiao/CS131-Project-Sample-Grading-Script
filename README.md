@@ -18,6 +18,7 @@
     import os
     os.system('sox input.wav -b 24 output.aiff rate -v -L -b 90 48k')
     ```
+- under [resources](./resources) folder I put my hint code for you to get started with this project there.
 
 ## Usage
 * put your server.py under the **sample_submission** folder
