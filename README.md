@@ -29,3 +29,4 @@
     ```
 * I think it should work for mac and linux, probably won't work on Windows
 * Probably a little bit adaptation is needed, probably the version matters
+* Once it works, feel free to add your own test cases in ```client_basic.SuperClient.test```; it's easy isn't it?
