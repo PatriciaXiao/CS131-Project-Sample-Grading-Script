@@ -159,6 +159,11 @@ class SuperClient:
 
     def test(self):
         self.loop = asyncio.get_event_loop()
+        # dropping the connections
+        all_servers = list(self.port_dict.keys())
+        for server_name in all_servers:
+            self.run_endserver(server_name)
+            # similarly, self.run_startserver(server_name) could be used to start a single server
         # start the servers
         self.start_all_servers()
         # basic test
