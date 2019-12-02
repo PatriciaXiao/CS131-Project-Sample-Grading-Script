@@ -123,8 +123,6 @@ class SuperClient:
         data = self.loop.run_until_complete(self.iamat(port, clientName, longitude, latitude))
         return data
     def safe_run_iamat(self, *args):
-        return self.run_iamat(*args)
-
         try:
             return self.run_iamat(*args)
         except:
