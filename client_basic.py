@@ -34,11 +34,11 @@ class SuperClient:
     def set_server_info(self, port_dict, server_dir):
         self.port_dict = port_dict
         self.port2server = dict(zip(port_dict.values(), port_dict.keys()))
-        self.Goloman = port_dict['Hill']
-        self.Hands = port_dict['Jaquez']
-        self.Holiday = port_dict['Smith']
-        self.Welsh = port_dict['Campbell']
-        self.Wilkes = port_dict['Singleton']
+        self.Hill = port_dict['Hill']
+        self.Jaquez = port_dict['Jaquez']
+        self.Smith = port_dict['Smith']
+        self.Campbell = port_dict['Campbell']
+        self.Singleton = port_dict['Singleton']
         self.server = os.path.join(server_dir, "server.py")
 
     async def start_server(self, server_name):
@@ -166,13 +166,13 @@ class SuperClient:
         # start the servers
         self.start_all_servers()
         # basic test
-        data = self.run_iamat(self.Goloman, "client", 34.068930, -118.445127)
-        print(evaluate_info(data, self.port2server[self.Goloman], "client", 34.068930, -118.445127))
-        first_line, json_part = self.run_whatsat(self.Goloman, "client", 10, 5)
-        print(evaluate_info(first_line, self.port2server[self.Goloman], "client", 34.068930, -118.445127))
+        data = self.run_iamat(self.Hill, "client", 34.068930, -118.445127)
+        print(evaluate_info(data, self.port2server[self.Hill], "client", 34.068930, -118.445127))
+        first_line, json_part = self.run_whatsat(self.Hill, "client", 10, 5)
+        print(evaluate_info(first_line, self.port2server[self.Hill], "client", 34.068930, -118.445127))
         print(evaluate_json(json_part, 5))
-        first_line, json_part = self.run_whatsat(self.Hands, "client", 10, 5)
-        print(evaluate_info(first_line, self.port2server[self.Goloman], "client", 34.068930, -118.445127))
+        first_line, json_part = self.run_whatsat(self.Jaquez, "client", 10, 5)
+        print(evaluate_info(first_line, self.port2server[self.Hill], "client", 34.068930, -118.445127))
         print(evaluate_json(json_part, 5))
         self.loop.close()
         # terminate the servers
