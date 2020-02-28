@@ -1,5 +1,8 @@
 # CS131 Project Sample Grading Script
- This is not really a grading script, rather, this is the simplest version of a super client (who has the power of starting a server)
+* This is not really a grading script because you didn't see any grading
+* The evaluation giving you True / False something is somewhat partial credits for each task
+* This is the simplest version of the core part of the grading script, but it doesn't contain any real test case
+* You may regard it as a super client (who has the power of starting a server) as well.
 
 ## Background
 - This is for [UCLA CS131 (**Programming Languages**)](http://web.cs.ucla.edu/classes/fall19/cs131/index.html) [**Project**](http://web.cs.ucla.edu/classes/fall19/cs131/hw/pr.html) (instructor: [Prof. Paul Eggert](http://web.cs.ucla.edu/classes/fall19/cs131/mail-eggert.html))
