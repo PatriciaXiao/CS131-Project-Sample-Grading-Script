@@ -1,4 +1,5 @@
 # CS131 Project Sample Grading Script
+* Maintained and updated on [CS131 TA Organization Reporitory](https://github.com/CS131-TA-team/CS131-Project-Sample-Grading-Script) since Winter 2020.
 * This is not really a grading script because you didn't see any grading
 * The evaluation giving you True / False something is somewhat partial credits for each task
 * This is the simplest version of the core part of the grading script, but it doesn't contain any real test case
