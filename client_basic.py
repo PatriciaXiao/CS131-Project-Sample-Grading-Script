@@ -10,15 +10,16 @@ import sys
 
 
 '''
-communicate (['Goloman', 'Hands', 'Holiday', 'Welsh', 'Wilkes'])
-0 1 1 0 1
-1 0 0 0 1
-1 0 0 1 1
-0 0 1 0 0
-1 1 1 0 0
+communicate (['Hill', 'Jaquez', 'Smith', 'Campbell', 'Singleton'])
+0 1 1 0 0
+0 1 0 0 1
+0 0 0 1 1
+0 0 1 0 1
+0 1 1 1 0
 '''
 
 TIMEOUT_MSG = "TIMEOUT"
+PYTHON_VER = "3.8" # "3.7"
 
 class SuperClient:
     def __init__(self, host='127.0.0.1', message_max_length=1e6, timeout=None):
@@ -33,15 +34,15 @@ class SuperClient:
     def set_server_info(self, port_dict, server_dir):
         self.port_dict = port_dict
         self.port2server = dict(zip(port_dict.values(), port_dict.keys()))
-        self.Goloman = port_dict['Goloman']
-        self.Hands = port_dict['Hands']
-        self.Holiday = port_dict['Holiday']
-        self.Welsh = port_dict['Welsh']
-        self.Wilkes = port_dict['Wilkes']
+        self.Goloman = port_dict['Hill']
+        self.Hands = port_dict['Jaquez']
+        self.Holiday = port_dict['Smith']
+        self.Welsh = port_dict['Campbell']
+        self.Wilkes = port_dict['Singleton']
         self.server = os.path.join(server_dir, "server.py")
 
     async def start_server(self, server_name):
-        command = 'nohup python3.7 {} {} &\n'.format(self.server, server_name)
+        command = 'nohup python{} {} {} &\n'.format(PYTHON_VER, self.server, server_name)
         os.system(command)
         # wait for a while so that the server has its time of setting up
         await asyncio.sleep(0.5)
@@ -181,11 +182,11 @@ if __name__ == '__main__':
     TIMEOUT = 20
     # an example of the ports
     port_dict = {
-        'Goloman': 8000,
-        'Hands': 8001,
-        'Holiday': 8002,
-        'Welsh': 8003,
-        'Wilkes': 8004
+        'Hill': 8000,
+        'Jaquez': 8001,
+        'Smith': 8002,
+        'Campbell': 8003,
+        'Singleton': 8004
     }
     server_dir = "./sample_submission" # the place where we can find server.py
 
